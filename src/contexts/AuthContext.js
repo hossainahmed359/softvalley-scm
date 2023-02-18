@@ -107,6 +107,7 @@ function AuthProvider({ children }) {
           user,
         },
       });
+     
     } else {
       dispatch({
         type: INITIALIZE,
@@ -116,6 +117,7 @@ function AuthProvider({ children }) {
         },
       });
     }
+    return response;
   };
 
   const signOut = () => {

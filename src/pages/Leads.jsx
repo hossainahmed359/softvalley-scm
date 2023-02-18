@@ -87,7 +87,7 @@ export const columns = [
         {" "}
         {value?.length > 0
           ? value?.map((el, index) => (
-              <span>{el?.name} {(value?.length === index + 1) ? "" : ","}</span>
+              <span key={`preferred_countries_${index+1}`}>{el?.name} {(value?.length === index + 1) ? "" : ","}</span>
             ))
           : "_"}
       </div>
