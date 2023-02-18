@@ -2,13 +2,16 @@ import { HOME_PATH, LOGIN_PATH } from "../../constants/routes";
 import Leads from "../../pages/Leads";
 import Login from "../../pages/Login";
 import AuthGuard from "../../components/guard/AuthGuard";
+import DashboardLayout from "../../components/dashboard/DashboardLayout";
 
 const routesMeta = [
   {
     path: HOME_PATH,
     element: (
       <AuthGuard>
-        <Leads />
+        <DashboardLayout>
+          <Leads />
+        </DashboardLayout>
       </AuthGuard>
     ),
   },

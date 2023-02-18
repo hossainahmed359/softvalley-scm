@@ -4,7 +4,8 @@ import useAuth from "../hooks/useAuth";
 const Leads = () => {
   const { signOut, isAuthenticated, isInitialized } = useAuth();
   return (
-    <div>
+    <div className="">
+      <h1>Body</h1>
       <button onClick={signOut}>Sign Out</button>
       Leads
     </div>
