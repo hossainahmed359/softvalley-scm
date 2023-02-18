@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { Children, useEffect } from "react";
+import { userLogin } from "./services/api/queries/login";
+import { privateAxios, setTokenInHeader } from "./services/axiosConfig";
+import { leadTableData } from "./services/api/queries/lead";
+import {
+  leadSource,
+  leadStatus,
+  leadAssignee,
+} from "./services/api/queries/leadFilters";
+import { useRoutes } from "react-router-dom";
+import routesMeta from "./configs/meta/routesMeta";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
+  const content = useRoutes(routesMeta);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AuthProvider>{content}</AuthProvider>
+    </>
   );
 }
 
