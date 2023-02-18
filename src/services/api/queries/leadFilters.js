@@ -1,11 +1,27 @@
 import { privateAxios } from "../../axiosConfig";
 import endpoints from "../../../constants/endpoints";
 
+export const createOptions = (arr = [], itemValueKey, itemLabelKey) => {
+  const options = [];
+  arr.forEach((el, index) => {
+    const data = { value: el?.[itemValueKey], label: el?.[itemLabelKey] };
+    options.push(data);
+  });
+
+  return options;
+};
+
 // Lead Status
 export const leadStatus = async () => {
   try {
     const data = await privateAxios.get(endpoints.STATUS);
-    return data?.data?.data || [];
+    if (data.data.success === true) {
+      const responseArr = data?.data?.data || [];
+      const options = createOptions(responseArr, "id", "name");
+      return options;
+    } else {
+      return [];
+    }
   } catch (error) {
     throw error;
   }
@@ -15,7 +31,13 @@ export const leadStatus = async () => {
 export const leadSource = async () => {
   try {
     const data = await privateAxios.get(endpoints.SOURCE);
-    return data?.data?.data || [];
+    if (data.data.success === true) {
+      const responseArr = data?.data?.data || [];
+      const options = createOptions(responseArr, "id", "name");
+      return options;
+    } else {
+      return [];
+    }
   } catch (error) {
     throw error;
   }
@@ -25,7 +47,13 @@ export const leadSource = async () => {
 export const leadAssignee = async () => {
   try {
     const data = await privateAxios.get(endpoints.ASSIGNEE);
-    return data?.data?.data || [];
+    if (data.data.success === true) {
+      const responseArr = data?.data?.data || [];
+      const options = createOptions(responseArr, "user_id", "name");
+      return options;
+    } else {
+      return [];
+    }
   } catch (error) {
     throw error;
   }
