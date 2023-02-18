@@ -1,0 +1,44 @@
+/* OVERWRITE */
+.form-control, .form-control:focus {
+    background: none;
+}
+
+
+.react-daterange-picker .react-daterange-picker__wrapper {
+    border: none !important;
+    /* min-height: 38px; */
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.react-daterange-picker__clear-button__icon.react-daterange-picker__button__icon {
+    height: 15px;
+    width: 15px;
+    opacity: 0.6;
+}
+
+.react-daterange-picker__calendar-button__icon.react-daterange-picker__button__icon {
+    height: 14px;
+    /* width: 15px; */
+    opacity: 0.6;
+}
+
+.tox.tox-tinymce {
+    background-color: #fff;
+    border: 1px solid #e8ebf3;
+}
+
+
+.form-check-input {
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 0.8em;
+    outline: none;
+}
+
+.form-check-input:checked {
+    background-color: #1890ff;
+    border-color: #1890ff;
+    
+}
+

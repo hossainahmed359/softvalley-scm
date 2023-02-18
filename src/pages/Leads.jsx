@@ -3,11 +3,13 @@ import TableContainer from "../components/table/TableContainer";
 import { leadTableData } from "../services/api/queries/lead";
 import { SelectInput } from "../components/formBuilder/inputs/SelectInput";
 import { Form } from "../components/formBuilder/FormInput";
-import {
-  leadStatus,
+import { Input } from "../components/formBuilder/inputs/TextInput";
+import {  leadStatus,
   leadSource,
   leadAssignee,
 } from "../services/api/queries/leadFilters";
+import DateRangeInput from '../components/formBuilder/inputs/DateRangeInput';
+
 
 export const profileAvatar = (
   <svg
@@ -121,63 +123,95 @@ export const columns = [
 const Leads = () => {
   return (
     <div className="">
-      <Form onSubmit={(e) => console.log(e)} className="mb-2">
+      <Form onSubmit={(e) => console.log(e)} className="mb-3">
         {(register, errors, { watch, setValue, control }) => (
-          <div className="d-flex gap-2">
-            <SelectInput
-              className={"col"}
-              name={"lead_status_id"}
-              placeholder={"Select Status"}
-              inputClassName="border-0 w-100 text-muted"
-              register={register}
-              errors={errors}
-              watch={watch}
-              setValue={setValue}
-              init={"Select status"}
-              control={control}
-              lookupQuery={leadStatus}
-              isMulti={true}
-            />
-            <SelectInput
-              className={"col"}
-              name={"source_id"}
-              placeholder={"Select source"}
-              inputClassName="border-0 w-100 text-muted"
-              register={register}
-              errors={errors}
-              watch={watch}
-              setValue={setValue}
-              control={control}
-              lookupQuery={leadSource}
-              isMulti={true}
-            />
-            <SelectInput
-              className={"col"}
-              name={"user_id"}
-              placeholder={"Select assignees"}
-              inputClassName="border-0 w-100 text-muted"
-              register={register}
-              errors={errors}
-              watch={watch}
-              setValue={setValue}
-              control={control}
-              lookupQuery={leadAssignee}
-              isMulti={true}
-            />
-
-            <div className=" d-flex gap-2">
-              <button className="btn btn-primary w-100" type="button">
-                Reset
-              </button>
-              <button className="btn btn-primary w-100" type="submit">
-                Search
-              </button>
+          <>
+            <div className="d-flex">
+              <Input
+                className={"form-group mb-3"}
+                name={"search"}
+                type="text"
+                inputClassName="form-control rounded-1"
+                placeholder={"Search in leads table"}
+                register={register}
+                errors={errors}
+              />
             </div>
-          </div>
+            <div className="d-flex gap-2">
+              <SelectInput
+                className={"col"}
+                name={"lead_status_id"}
+                placeholder={"Select Status"}
+                inputClassName="border-0 w-100 text-muted"
+                register={register}
+                errors={errors}
+                watch={watch}
+                setValue={setValue}
+                init={"Select status"}
+                control={control}
+                lookupQuery={leadStatus}
+                isMulti={true}
+              />
+              <SelectInput
+                className={"col"}
+                name={"source_id"}
+                placeholder={"Select source"}
+                inputClassName="border-0 w-100 text-muted"
+                register={register}
+                errors={errors}
+                watch={watch}
+                setValue={setValue}
+                control={control}
+                lookupQuery={leadSource}
+                isMulti={true}
+              />
+              <SelectInput
+                className={"col"}
+                name={"user_id"}
+                placeholder={"Select assignees"}
+                inputClassName="border-0 w-100 text-muted"
+                register={register}
+                errors={errors}
+                watch={watch}
+                setValue={setValue}
+                control={control}
+                lookupQuery={leadAssignee}
+                isMulti={true}
+              />
+              <DateRangeInput
+                className={"col"}
+                name={"date_rangle"}
+                placeholder={"Select assignees"}
+                inputClassName="border-0 w-100 text-muted"
+                register={register}
+                errors={errors}
+                watch={watch}
+                setValue={setValue}
+                control={control}
+                lookupQuery={leadAssignee}
+                isMulti={true}
+              />
+
+              <div className=" d-flex gap-2">
+                <button
+                  className="btn btn-primary w-100  rounded-1"
+                  type="button"
+                >
+                  Reset
+                </button>
+                <button
+                  className="btn btn-primary w-100  rounded-1"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
+          </>
         )}
       </Form>
 
-      {/* <TableContainer queryService={leadTableData} columns={columns} /> */}
+      <TableContainer queryService={leadTableData} columns={columns} />
     </div>
   );
 };

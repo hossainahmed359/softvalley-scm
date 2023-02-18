@@ -46,7 +46,6 @@ export function SelectInput({
       : []
   );
 
-  const [display, setDisplay] = useState(show);
 
   const performLookupQuery = useCallback(
     async (data) => {
@@ -77,19 +76,6 @@ export function SelectInput({
     performLookupQuery();
   }, [performLookupQuery]);
 
-  const toggleVisibilityOfSelect = useCallback((condition) => {
-    if (condition) setDisplay(false);
-    else setDisplay(true);
-  }, []);
-
-  // useEffect(() => {
-  //   if (!dependencies?.length || !Object.names(dependencyValues).length)
-  //     return;
-  //   onDependencyValueChange(dependencyValues, name, {
-  //     performLookupQuery,
-  //     toggleVisibilityOfSelect,
-  //   });
-  // }, [ performLookupQuery, dependencyValues, toggleVisibilityOfSelect]);
 
   const handleSelect = useCallback(
     (value) => {
@@ -103,7 +89,6 @@ export function SelectInput({
   }, [defaultValue, handleSelect, isWatchSubscribed]);
 
   return (
-    display && (
       <div className={className} id={id}>
         {label && (
           <label className={labelClassName}>
@@ -153,6 +138,5 @@ export function SelectInput({
         />
          <InputError error={errors[name]} className={"mt-1"} />
       </div>
-    )
   );
 }
