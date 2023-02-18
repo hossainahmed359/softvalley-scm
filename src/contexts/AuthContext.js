@@ -69,6 +69,8 @@ function AuthProvider({ children }) {
       const access_token = getLocalStorage(STORAGE_KEY_ACCESS_TOKEN);
       const user = getLocalStorage(STORAGE_KEY_USER_DATA);
       if (access_token && user) {
+        setSession(access_token, user);
+        setTokenInHeader(privateAxios.defaults);
         dispatch({
           type: INITIALIZE,
           payload: {

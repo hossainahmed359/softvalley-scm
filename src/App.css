@@ -15,3 +15,7 @@
 .list-unstyled {
   list-style: none;
 }
+
+.table-bordered>:not(caption)>*>* {
+  border-width: 0 1px;
+}
