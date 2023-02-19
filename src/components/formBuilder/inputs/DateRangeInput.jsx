@@ -51,20 +51,23 @@ const DateRangeInput = ({
       )}
       <Controller
         control={control}
-        defaultValue={defaultValue}
+        // defaultValue={defaultValue}
         name={name}
         rules={rules}
         shouldUnregister
         // className='form-control'
         render={({ field: { onChange, value, ref } }) => (
+         <>
           <DateRangePicker
             className={"form-control"}
             onChange={(val) => {
               setValue(name, val);
               onChange(getDateRangeSearchUrlParam(val));
             }}
-            value={parseDateRangeSearchUrlParam(value)}
+            value={ value ? parseDateRangeSearchUrlParam(value) : null}
+            placeHolder='something'
           />
+         </>
         )}
       />
       <InputError error={errors[name]} className={"mt-1"} />
