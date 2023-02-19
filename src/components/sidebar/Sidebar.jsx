@@ -1,6 +1,6 @@
 import React from "react";
 import "./Sidebar.css";
-// import profileAvatar from "../../assets/images/icons/person.svg";
+import companyLogo from '../../assets/images/company-logo.png';
 
 export const profileAvatar = (
   <svg
@@ -37,12 +37,13 @@ const Sidebar = ({ setEnlargeMenu, enlargeMenu }) => {
     >
       <div className="d-flex flex-column">
         <div
-          className=""
+          className="d-flex justify-content-center align-items-center"
           style={{ height: "77px", borderBottom: "1px solid #eceff5" }}
         >
-          <h4 className="pt-4 ps-3 font-roboto text-primary" style={{letterSpacing: '1px'}}>
+          {/* <h4 className="pt-4 ps-3 font-roboto text-primary" style={{letterSpacing: '1px'}}>
             <i>SOFTVALLEY SCM</i>
-          </h4>
+          </h4> */}
+          <img className="w-100" src={companyLogo} alt="" />
         </div>
         <ul className="list-unstyled">
           <li className="bg-primary ps-3 d-flex align-items-center gap-2" style={{height: '50px'}}>

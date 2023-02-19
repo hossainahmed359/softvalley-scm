@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import user_avatar from "../../../assets/images/users/user-1.webp";
 import { LOGIN_PATH } from "../../../constants/routes";
 import useAuth from "../../../hooks/useAuth";
+import { getLocalStorage } from "../../../services/storage/storage";
+import {STORAGE_KEY_USER_DATA} from '../../../constants/localstorage';
 import "./userProfileSettings.css";
 // import { useOutsideClickAlerter } from '../../../hooks/useOutsideClickAlerter';
 
@@ -15,6 +17,8 @@ const UserProfileSettings = ({ id, isClicked, handleClick }) => {
   };
   const dropdownRef = useRef();
   // useOutsideClickAlerter(dropdownRef, () => handleClick(id), []);
+
+  const userData = getLocalStorage(STORAGE_KEY_USER_DATA);
 
   return (
     <li className="dropdown">
@@ -37,8 +41,8 @@ const UserProfileSettings = ({ id, isClicked, handleClick }) => {
             />
           </div>
           <div className="ms-2 ">
-            <small className="d-none d-md-block " style={{fontSize: '12px'}}>Admin</small>
-            <p className="pb-0 mb-0" style={{fontSize: '13px'}}>User Name</p>
+            <small className="d-none d-md-block " style={{fontSize: '12px'}}>Hello!</small>
+            <p className="pb-0 mb-0" style={{fontSize: '13px'}}>{userData?.name || 'Anonymous User'}</p>
           </div>
         </div>
       </span>

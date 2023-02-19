@@ -5,8 +5,12 @@ import useAuth from "../../hooks/useAuth";
 
 // For routes that can only be accessed by authenticated users
 function AuthGuard({ children }) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { isAuthenticated, isInitialized } = useAuth();
+
+  useEffect(() => {
+    isInitialized && setIsLoading(false)
+   },[isInitialized])
 
 
   if (isInitialized && !isAuthenticated) {
