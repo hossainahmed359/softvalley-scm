@@ -1,3 +1,17 @@
+export const refactorSearchedInputData = (data) => {
+  // Object.keys(data).forEach((key) => !data[key] && delete data[key]);
+
+  Object.keys(data).forEach((key) => {
+    if (!data[key]) delete data[key];
+
+    if (Array.isArray(data[key])) {
+     data[key] = data[key].toString();
+    }
+  });
+
+  return data;
+};
+
 export const getUrlSearchParams = (data) => {
   const params = {};
   data.forEach((value, key) => (params[key] = value || ""));
