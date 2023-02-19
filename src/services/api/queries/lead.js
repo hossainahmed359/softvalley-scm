@@ -1,11 +1,18 @@
 import { axios, privateAxios } from "../../axiosConfig";
 import endpoints from "../../../constants/endpoints";
-
+import { DEFAULT_PAGE_SIZE } from "../../../components/table/TableContainer";
 
 // Lead Table
-export const leadTableData = async (page = 1, body) => {
+export const leadTableData = async (
+  page = 1,
+  limit = DEFAULT_PAGE_SIZE,
+  body
+) => {
+
+  // console.log(page, limit)
+
   try {
-    const data = await privateAxios.post(`${endpoints.LEAD}?page=${page}`, {
+    const data = await privateAxios.post(`${endpoints.LEAD}?page=${page}&limit=${limit}`, {
       ...(body && { ...body }),
     });
 

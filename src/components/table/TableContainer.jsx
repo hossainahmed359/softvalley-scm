@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 import { useSearchParams } from "react-router-dom";
 import { getUrlSearchParams } from "../../utils/urls";
 import { eventBus } from "../../services/eventBus";
-import TableFilter from './TableFilter';
+import TableFilter from "./TableFilter";
 
 export const DEFAULT_PAGE_SIZE = 10;
 
@@ -27,11 +27,10 @@ const TableContainer = ({
   const processedActions = actions; // Check for permissions here later
 
   const performQuery = useCallback(async () => {
-    // console.log("Performing Query ========>");
     const urlSearchParams = getUrlSearchParams(searchParams);
-    console.log(urlSearchParams)
+    const { page, limit } = urlSearchParams;
     setIsLoading(true);
-    const response = await queryService(currentPage, urlSearchParams);
+    const response = await queryService(page, limit, urlSearchParams);
     const { total, data } = response;
     setPageData({
       rowData: data || [],
@@ -57,14 +56,14 @@ const TableContainer = ({
     setPageLimit(pageSize);
     setCurrentPage(current);
     setGoToPageInput(current);
-    setIsLoading(true);
 
     const newParams = {
       ...getUrlSearchParams(searchParams),
+      page: current,
+      limit: pageSize,
     };
     setSearchParams(newParams);
   };
-
 
   return (
     <div>

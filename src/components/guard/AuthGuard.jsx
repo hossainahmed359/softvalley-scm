@@ -27,8 +27,6 @@ function AuthGuard({ children }) {
     );
   }
 
-
-
   return <React.Fragment>{children}</React.Fragment>;
 }
 

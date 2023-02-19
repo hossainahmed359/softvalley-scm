@@ -27,7 +27,7 @@ export const PageSize = ({ pageSize, onChange, total }) => {
       <label>
         <select className="dataTable-selector" name='pageSizeValue'
           onChange={(e) => {
-            // onChange(1, parseInt(e.target.value));
+            onChange(1, parseInt(e.target.value));
           }}
           value={pageSize}
         >
@@ -36,7 +36,8 @@ export const PageSize = ({ pageSize, onChange, total }) => {
           </option>
           <option value={15}>15</option>
           <option value={20}>20</option>
-          <option value={0}>All</option>
+          <option value={30}>30</option>
+          {/* <option value={0}>All</option> */}
         </select>{" "}
       </label>
       <span className='mx-2'>of {total} items</span>
