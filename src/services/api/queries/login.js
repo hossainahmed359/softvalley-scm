@@ -19,7 +19,6 @@ export const userLogin = async (body) => {
   try {
     const data = await axios.post(endpoints.LOGIN, {
       ...body,
-     
     });
 
     // setLocalStorageData(STORAGE_KEY_ACCESS_TOKEN, data?.data?.data?.token);
