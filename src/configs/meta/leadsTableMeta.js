@@ -91,7 +91,7 @@ export const leadsTableFilter = (handlerFilterSubmit, handlerFilterReset) => {
             />
             <DateRangeInput
               className={"col"}
-              name={"date_rangle"}
+              name={"contacted_date"}
               placeholder={"Select assignees"}
               inputClassName="border-0 w-100 text-muted"
               register={register}
