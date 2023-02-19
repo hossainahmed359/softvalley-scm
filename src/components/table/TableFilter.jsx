@@ -8,14 +8,14 @@ const TableFilter = ({
   params,
   setParams,
   setCurrentPage,
+  pageSize,
 }) => {
   const handlerFilterSubmit = (data) => {
     setCurrentPage(1);
     Object.keys(data).forEach((key) => !data[key] && delete data[key]);
-    // const newParams = { ...getPaginationParams(params), ...data };
-    const newParams = { ...data };
+    const newParams = { page: 1 , limit: pageSize, ...data };
     setParams(newParams);
-    queryService();
+    // queryService();
   };
 
   const handlerFilterReset = () => {

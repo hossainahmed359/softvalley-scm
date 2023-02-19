@@ -28,9 +28,9 @@ const TableContainer = ({
 
   const performQuery = useCallback(async () => {
     const urlSearchParams = getUrlSearchParams(searchParams);
-    const { page, limit } = urlSearchParams;
+    // const { page, limit } = urlSearchParams;
     setIsLoading(true);
-    const response = await queryService(page, limit, urlSearchParams);
+    const response = await queryService(urlSearchParams);
     const { total, data } = response;
     setPageData({
       rowData: data || [],
@@ -74,6 +74,7 @@ const TableContainer = ({
           params={searchParams}
           setParams={setSearchParams}
           setCurrentPage={setCurrentPage}
+          pageSize={pageLimit}
         />
       )}
       <Table
