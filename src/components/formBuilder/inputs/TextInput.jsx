@@ -21,7 +21,7 @@ export function Input({
   ...rest
 }) {
   return (
-    <div className={className} id={id}>
+    <div className={className} id={id} style={{position: 'relative'}}>
       {label && (
         <label className={labelClassName}>
           {label === undefined

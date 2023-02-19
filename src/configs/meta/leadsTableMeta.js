@@ -8,25 +8,12 @@ import {
   leadStatus,
 } from "../../services/api/queries/leadFilters";
 import { Fragment } from "react";
-
-export const profileAvatar = (
-  <svg
-    width={14}
-    height={14}
-    viewBox="0 0 12 12"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M6 6C7.65685 6 9 4.65685 9 3C9 1.34315 7.65685 0 6 0C4.34315 0 3 1.34315 3 3C3 4.65685 4.34315 6 6 6ZM8 3C8 4.10457 7.10457 5 6 5C4.89543 5 4 4.10457 4 3C4 1.89543 4.89543 1 6 1C7.10457 1 8 1.89543 8 3Z"
-      fill="black"
-    />
-    <path
-      d="M12 11C12 12 11 12 11 12H1C1 12 0 12 0 11C0 10 1 7 6 7C11 7 12 10 12 11ZM11 10.9965C10.9986 10.7497 10.8462 10.0104 10.1679 9.33211C9.51563 8.67985 8.2891 8 5.99999 8C3.71088 8 2.48435 8.67985 1.8321 9.33211C1.15375 10.0104 1.00142 10.7497 1 10.9965H11Z"
-      fill="black"
-    />
-  </svg>
-);
+import {
+  searchIcon,
+  filterIcon,
+  resetIcon,
+  profileAvatar,
+} from "../../assets/images/iconsJSX/icons";
 
 export const leadsTableFilter = (handlerFilterSubmit, handlerFilterReset) => {
   return (
@@ -46,14 +33,28 @@ export const leadsTableFilter = (handlerFilterSubmit, handlerFilterReset) => {
               placeholder={"Search in leads table"}
               register={register}
               errors={errors}
+              append={
+                <span
+                  style={{
+                    opacity: "0.5",
+                    position: "absolute",
+                    right: "10px",
+                    top: "12px",
+                  }}
+                  className="d-flex justify-content-center align-items-center"
+                >
+                  {searchIcon}
+                </span>
+              }
             />
           </div>
-          <div className="d-flex gap-2">
+          <div className="d-flex flex-wrap">
             <SelectInput
-              className={"col"}
+              className={"col-lg-6 col-xl-3 pe-2 pb-3"}
               name={"lead_status_id"}
               placeholder={"Select Status"}
               inputClassName="border-0 w-100 text-muted"
+              label={"Statuses"}
               register={register}
               errors={errors}
               watch={watch}
@@ -64,10 +65,11 @@ export const leadsTableFilter = (handlerFilterSubmit, handlerFilterReset) => {
               isMulti={true}
             />
             <SelectInput
-              className={"col"}
+              className={"col-lg-6 col-xl-3 pe-2 pb-3"}
               name={"source_id"}
               placeholder={"Select source"}
               inputClassName="border-0 w-100 text-muted"
+              label={"Sources"}
               register={register}
               errors={errors}
               watch={watch}
@@ -77,10 +79,11 @@ export const leadsTableFilter = (handlerFilterSubmit, handlerFilterReset) => {
               isMulti={true}
             />
             <SelectInput
-              className={"col"}
+              className={"col-lg-6 col-xl-3 pe-2 pb-3"}
               name={"user_id"}
               placeholder={"Select assignees"}
               inputClassName="border-0 w-100 text-muted"
+              label={"Assignees"}
               register={register}
               errors={errors}
               watch={watch}
@@ -90,10 +93,11 @@ export const leadsTableFilter = (handlerFilterSubmit, handlerFilterReset) => {
               isMulti={true}
             />
             <DateRangeInput
-              className={"col"}
+              className={"col-lg-6 col-xl-3 pe-2 pb-3"}
               name={"contacted_date"}
               placeholder={"Select assignees"}
               inputClassName="border-0 w-100 text-muted"
+              label={"Contacted Date"}
               register={register}
               errors={errors}
               watch={watch}
@@ -103,19 +107,19 @@ export const leadsTableFilter = (handlerFilterSubmit, handlerFilterReset) => {
               isMulti={true}
             />
 
-            <div className=" d-flex gap-2">
-              <button
-                onClick={handlerFilterReset}
-                className="btn btn-primary w-100  rounded-1"
-                type="button"
-              >
-                Reset
-              </button>
+            <div className="col-4 d-flex justify-content-center align-items-end gap-2">
               <button
                 className="btn btn-primary w-100  rounded-1"
                 type="submit"
               >
-                Search
+                <span>{filterIcon}</span> Filter
+              </button>
+              <button
+                onClick={handlerFilterReset}
+                className="btn btn-primary w-100 rounded-1"
+                type="button"
+              >
+                <span>{resetIcon}</span> Reset Filter
               </button>
             </div>
           </div>
@@ -200,7 +204,10 @@ export const leadsTableColumns = [
         {" "}
         {value?.length > 0
           ? value?.map((el, index) => (
-              <span key={`preferred_countries_${index + 1}`} className='d-flex flex-wrap'>
+              <span
+                key={`preferred_countries_${index + 1}`}
+                className="d-flex flex-wrap"
+              >
                 <span>
                   {" "}
                   {el?.name} {value?.length === index + 1 ? "" : ","}
