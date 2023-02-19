@@ -3,11 +3,13 @@ import Table from "./Table";
 import Pagination from "./Pagination";
 import { useSearchParams } from "react-router-dom";
 import { getUrlSearchParams } from "../../utils/urls";
-import { eventBus } from '../../services/eventBus'
+import { eventBus } from "../../services/eventBus";
+import TableFilter from './TableFilter';
 
 export const DEFAULT_PAGE_SIZE = 10;
 
 const TableContainer = ({
+  filtersMeta,
   queryService,
   columns,
   actions = null,
@@ -49,7 +51,6 @@ const TableContainer = ({
     performQuery();
   }, [searchParams, performQuery]);
 
-
   // HANDLE PAGINATION CHANGE
   const handlePaginationChange = (current, pageSize = DEFAULT_PAGE_SIZE) => {
     setPageLimit(pageSize);
@@ -59,15 +60,22 @@ const TableContainer = ({
 
     const newParams = {
       ...getUrlSearchParams(searchParams),
-      page_size: pageSize,
-      page: current,
     };
     setSearchParams(newParams);
   };
 
+
   return (
     <div>
-      {/* FILTERS */}
+      {filtersMeta && (
+        <TableFilter
+          filtersMeta={filtersMeta}
+          queryService={performQuery}
+          params={searchParams}
+          setParams={setSearchParams}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
       <Table
         columns={columns || []}
         data={pageData.rowData || []}

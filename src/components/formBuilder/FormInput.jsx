@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useForm } from "react-hook-form";
+import { eventBus } from '../../services/eventBus';
 
 export function Form({
   className,
@@ -8,7 +9,10 @@ export function Form({
   onSubmit,
   watchFields = [],
   onChange,
+  resetEvent = "reset_form",
 }) {
+  const formInstance = useForm({ defaultValues: defaultValues || {} });
+
   const {
     handleSubmit,
     register,
@@ -19,9 +23,17 @@ export function Form({
     getValues,
     resetField,
     setValue,
-  } = useForm({ defaultValues: defaultValues || {} });
+  } = formInstance;
 
   const subscribedWatchFields = watch(watchFields);
+
+  useEffect(() => {
+    eventBus.subscribe(resetEvent, () => formInstance?.reset());
+
+    return () => {
+      eventBus.unsubscribe(resetEvent);
+    };
+  }, [formInstance, resetEvent]);
 
   return (
     <form

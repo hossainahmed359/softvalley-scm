@@ -103,7 +103,7 @@ const Table = ({
             {...getTableProps()}
           >
             <thead className="thead-light">
-              {headerGroups.map((headerGroup, idx) => (
+              {headerGroups?.map((headerGroup, idx) => (
                 <tr key={idx} {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column, idx) => (
                     <th
@@ -118,7 +118,7 @@ const Table = ({
                         fontSize: "14px",
                       }}
                     >
-                      {column.render("Header")}
+                      {column?.render("Header")}
                     </th>
                   ))}
                 </tr>
@@ -127,7 +127,7 @@ const Table = ({
             {
               rowData?.length ? (
                 <tbody className="table_body" {...getTableBodyProps()}>
-                  {rows.map((row, idx) => {
+                  {rows?.map((row, idx) => {
                     prepareRow(row);
                     return (
                       <tr
@@ -136,7 +136,7 @@ const Table = ({
                         id="table"
                         {...row.getRowProps()}
                       >
-                        {row.cells.map((cell, idx) => {
+                        {row?.cells.map((cell, idx) => {
                           return (
                             <td
                               key={idx}
@@ -163,7 +163,7 @@ const Table = ({
                     );
                   })}
                 </tbody>
-              ) : null
+              ) : <h4>No Data found</h4>
               // <h4 className="text-no-data">No Data Found</h4>
             }
           </table>
