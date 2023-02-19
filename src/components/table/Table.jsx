@@ -163,8 +163,7 @@ const Table = ({
                     );
                   })}
                 </tbody>
-              ) : <h4>No Data found</h4>
-              // <h4 className="text-no-data">No Data Found</h4>
+              ) : null // <h4 className="text-no-data">No Data Found</h4>
             }
           </table>
         </div>

@@ -29,6 +29,7 @@ const TableContainer = ({
   const performQuery = useCallback(async () => {
     // console.log("Performing Query ========>");
     const urlSearchParams = getUrlSearchParams(searchParams);
+    console.log(urlSearchParams)
     setIsLoading(true);
     const response = await queryService(currentPage, urlSearchParams);
     const { total, data } = response;
